@@ -86,7 +86,14 @@ possible values: humanities math.sci pre.prof social.sci Type of major the subje
 Details
 
 # Methods
+We start by examining the data for missing values. If there are any, we may reduce the dataframe to only those of interest followed by the **complete cases**
+command to remove them.  The **is.na** command is a good one fot this.
 
+```{r}
+sum(is.na(attitudes))
+```
+
+This says there is just one (although I dont see it). But there is little worry about it.  So we need to see if there is any difference in our behavior depending on the preload to the question.  We will look at bar charts and row percentage from a crosstabulated table to see if we can detect differences. Will will also use a chi-squared statistical test for our inferential approach.
 <Methods go here.  Perform your variable analysis.  On the basis of that analysis, choose at least one graphical descriptive method, at least one numerical descriptive method, and an appropriate inferential method involving confidence intervals to investigate the Research Question.  NOTE:  Your inferential method should be one that can produce a confidence interval for a parameter of interest.  Suggestion:  In this section you should identify and define the population parameter that you are interested in.>
 
 # Results
