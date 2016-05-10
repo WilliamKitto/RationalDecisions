@@ -98,7 +98,22 @@ Details
 <Put some introductory sentence in this section.>
 
 ### Graphical Descriptive Results
+We first look at a barplot of follow on action 
 
+```{r}
+contTable <- xtabs(~ conc.situation + sex + conc.decision, data = attitudes)
+barchart(contTable,
+	layout = c(1,2),
+	auto.key = list(
+		space = "top",
+		title = "conc.decision",
+		cex.title = 1,
+		columns = 1),
+	horizontal = FALSE,
+	main = "Buy another ticket?")
+```
+
+This seems to show losing your ticket is about 50/50 to buying another ... but losing the money makes it a lot more unlikely that you would buy a new one.
 <Introduce your graph to the reader, and then make the graph.  After the graph, include a discussion of the graph, pointing out specific features of the graph that help you answer your research question.>
 
 ### Numerical Descriptive Results
