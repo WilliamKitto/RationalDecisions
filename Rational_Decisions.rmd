@@ -95,14 +95,16 @@ Details
 
 ## Descriptive Results
 
+We begin by forming a table between our settings and the decisions made by our subjects.
+
 <Put some introductory sentence in this section.>
 
 ### Graphical Descriptive Results
 We first look at a barplot of follow on action 
 
 ```{r}
-contTable <- xtabs(~ conc.situation + sex + conc.decision, data = attitudes)
-barchart(contTable,
+contable<-table(attitudes$conc.situation,attitudes$conc.decision)
+barchart(contable,
 	layout = c(1,2),
 	auto.key = list(
 		space = "top",
@@ -118,11 +120,32 @@ This seems to show losing your ticket is about 50/50 to buying another ... but l
 
 ### Numerical Descriptive Results
 
+Lets consider comparing row percents
+
+```{r}
+rowPerc(contable)
+```
+
+Looking at columes of our table of row percentages we see 80 percent of those who lost tickets, buy again. However only half of those who lost money buy again. This appears to be a noteworthy difference.
 <Introduce your numerical descriptive results, and then produce them.  Afterwards, include a discussion of the results, pointing out how specific numbers in the results help you to answer the research question.>
 
 ## Inferential Results
 
-<Inferential results here.  Try to explain all important parts of the printed output of your inferential routine.  You should discuss address all steps of the confidence interval process, but you don't have to number them explicitly and you don't have to address them in the standard order.  Just make sure you adresss the in a logical way.  In particular, make sure that you define the parameter(s) of interest, make sure that you report and interpret the confidence interval for the reader, and explain to the reader how the confidence interval helps us address the Research Question.  If the P-value in your test is reported in scientific notation, you should re-state it in a way that does not use scientific notation (see class slides and website slides for guidance on this matter). NOTE:  Many people choose to address the "Safety Check"" in the final Discussion and Conclusion section, but other discussion of inferential results shold go in this section.>
+In order to quantify the differences observed we will run a chi squared test on the contingency table above.
+
+This is an inferential test done by computing the chi squared static from our sample.
+
+$H_0:$ There is no difference in decision **to buy** based on whether you lost money or a ticket   
+$H_a:$ The decision **to buy* is related to whether or not you lost a ticket or money   
+We will be interpreting the results by looking at the probablilty of having a chi squared statistic as large as or larger than the value we compute.  This is what the computed p-value represents.  
+```{r}
+chisqtestGC(contable,graph=TRUE)
+
+```
+
+This pretty well sums it up. P-value extremely low.  Our sample statistic was **26.8**  and the value expected if $H_0:$ is true is right around one.   Very strong evidence against the null hypothesis.
+
+
 
 # Discussion and Conclusion
 
